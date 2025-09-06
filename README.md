@@ -1,41 +1,74 @@
-## GANs Project: Face Generation
-### Getting the project files
+# Face Generation with GANs 🧑‍🎨✨
 
-The project files are located in the Project Workspace and include the following files:
+## 📌 Overview
 
-* **`dlnd_face_generation_starter.ipynb`**
-* **`README.md`**
-* **`requirements.txt`**
-* **`tests.py`**
-* **`processed-celeba-small.zip`**
+This project is part of the **Udacity Deep Learning Nano Degree** program.
+The objective is to build a **custom Generative Adversarial Network (GAN)** capable of generating realistic human face images based on the **CelebA dataset**.
 
-We highly recommend using the Project Workspace to complete your project; however, if you choose to not use the workspace, you can download the project files from the Project Workspace.
+The project demonstrates the **end-to-end GAN workflow**:
 
-### Instructions
+* Designing a data preprocessing pipeline
+* Implementing custom **Generator** and **Discriminator** networks in PyTorch
+* Applying adversarial loss functions and optimizers
+* Iteratively training and refining models
+* Generating new face samples that resemble real human features
 
-Open the notebook file, `dlnd_face_generation_starter.ipynb` and follow the instructions. This project is organized as follows:
+---
 
-* **Data Pipeline**: implement a data augmentation function and a custom dataset class to load the images and transform them.
-* **Model Implementation**: build a custom generator and a custom discriminator to make your GAN
-* **Loss Functions and Gradient Penalty**: decide on loss functions and whether you want to use gradient penalty or not.
-* **Training Loop**: implement the training loop and decide on which strategy to use 
+## 🛠️ Tech Stack
 
-Each section requires you to make design decisions based on the experience you have gathered in this course.  Do not hesitate to come back to a section to improve your model or your data pipeline based on the results that you are getting. 
+* Python 3.7+
+* PyTorch – deep learning framework
+* Torchvision – transforms and dataset utilities
+* NumPy, Pandas, Matplotlib – data wrangling & visualization
+* Jupyter Notebook – interactive development
 
-Building a deep learning model is an iterative process, and it's especially true for GANs! Good luck!
+---
 
-### Submitting Your Project
+## 📊 Dataset
 
-For this project you will need to submit one file – **dlnd_face_generation.ipynb**
+* **CelebA Dataset (subset)** – collection of celebrity face images
+* Preprocessed to **64x64 RGB tensors**
+* Pixel values normalized to **\[-1, 1] range** for stable GAN training
+
+---
+
+## 🚀 Project Workflow
+
+1. **Data Pipeline**
+
+   * Implemented a `get_transform` function with resizing, cropping, normalization
+   * Created a custom `DatasetDirectory` class with `__len__` and `__getitem__`
+
+2. **Model Architecture**
+
+   * **Generator**: Takes a latent vector (noise) and outputs a 3-channel RGB image
+   * **Discriminator**: Takes an image (real/fake) and outputs a single authenticity score
+
+3. **Loss Functions & Optimization**
+
+   * Adversarial loss functions (Generator vs Discriminator)
+   * Low learning rates for stability
+
+4. **Training Strategy**
+
+   * Iterative training with separate steps for Generator and Discriminator
+   * Loss values monitored and adjusted
+   * Training continues until generated faces show meaningful features (eyes, nose, mouth, hair)
+
+---
+
+## 📈 Results
+
+* Initial outputs: random noise with vague structure
+* After several epochs: faces with distinguishable features emerge
+* Final samples demonstrate **recognizable human-like faces** with variations in expression and attributes
+
+<img width="799" height="219" alt="sample" src="https://github.com/user-attachments/assets/889d2207-336c-46e0-8216-a9dfc62f6d29" />
 
 
-The full project may be submitted in two ways:
 
-**Project completed in Project Workspace:**
+## 🎓 Acknowledgements
 
-* Your project may be submitted directly via the Project Workspace by pressing the **`Submit`** button in the bottom right corner of the workspace. 
-
-**Project completed outside of Project Workspace:**
-
-* Your project may be submitted using the Project Submission page by pressing the **`Submit Project`** button in the top right corner of the page and following those directions.
-* You will need to create a zip file of the required project file and submit the zip file.
+* Project completed as part of the **Udacity Deep Learning Nano Degree**
+* Dataset: [CelebA Dataset](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html)
